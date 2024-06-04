@@ -19,5 +19,10 @@ export const status = {
         NICKNAME_NOT_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "MEMBER4002", "message": "닉네임은 필수입니다."},
         EMAIL_ALREADY_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "MEMBER4003", "message": "이미 가입된 계정입니다."},
         // article err
-        ARTICLE_NOT_FOUND: {status: StatusCodes.NOT_FOUND, "isSuccess": false, "code": "ARTICLE4001", "message": "게시글이 없습니다."}
+        ARTICLE_NOT_FOUND: {status: StatusCodes.NOT_FOUND, "isSuccess": false, "code": "ARTICLE4001", "message": "게시글이 없습니다."},
+        // store err
+        STORE_NOT_FOUND: {status: StatusCodes.NOT_FOUND, "isSuccess": false, "code": "STORE4001", "message": "요청하신 가게 정보가 없습니다."},
+        STORE_ALREADY_EXIST: {status: StatusCodes.BAD_REQUEST, "isSuccess": false, "code": "STORE4002", "message": "이미 존재하는 가게입니다."},
+        // mission arr
+        MISSION_NOT_FOUND: {status: StatusCodes.NOT_FOUND, "isSuccess": false, "code": "MISSION4001", "message": "요청하신 미션 정보가 없습니다."},
 }

@@ -1,25 +1,46 @@
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { signinResponseDTO } from "../models/user.dto.js";
-import { addUser, getUser, getUserPreferToUserID, setPrefer } from "../models/user.dao.js";
+import { signinResponseDTO } from "../models/user/user.dto.js";
+import userDao from "../models/user/user.dao.js";
 
-export const joinUser = async (body) => {
-    // const prefer = body.prefer;
+const userService = {
+    joinUser: async (body) => {
+        // const prefer = body.prefer;
+    
+        const joinUserData = await userDao.addUser({
+            'email': body.email,
+            'name': body.name,
+            'gender': body.gender,
+            'addr': body.addr,
+            'specAddr': body.specAddr
+        });
+    
+        if(joinUserData == -1){
+            throw new BaseError(status.EMAIL_ALREADY_EXIST);
+        }else{
+            // for (let i = 0; i < prefer.length; i++) {
+            //     await setPrefer(joinUserData, prefer[i]);
+            // }
+            return signinResponseDTO(await userDao.getUser(joinUserData), await userDao.getUserPreferToUserID(joinUserData));
+        }
+    },
+    addMissionToMemeber: async (body) => {
+        const memberMissionData = await userDao.addMissionToMemeber({
+            'member_id': body.member_id,
+            'mission_id': body.mission_id,
+            'status': body.status,
+        })
 
-    const joinUserData = await addUser({
-        'email': body.email,
-        'name': body.name,
-        'gender': body.gender,
-        'addr': body.addr,
-        'specAddr': body.specAddr
-    });
+        if (memberMissionData == -1) {
+            throw new BaseError(status.MISSION_NOT_FOUND);
+        } else if (memberMissionData == -2) {
+            throw new BaseError(status.STORE_NOT_FOUND);
+        }
 
-    if(joinUserData == -1){
-        throw new BaseError(status.EMAIL_ALREADY_EXIST);
-    }else{
-        // for (let i = 0; i < prefer.length; i++) {
-        //     await setPrefer(joinUserData, prefer[i]);
-        // }
-        return signinResponseDTO(await getUser(joinUserData), await getUserPreferToUserID(joinUserData));
+        return;
     }
+
 }
+
+export default userService;
+

@@ -5,6 +5,7 @@ import { response } from './config/response.js';
 import { userRouter } from './src/routes/user.route.js';
 import { specs } from './swagger/swagger.config.js';
 import SwaggerUi from 'swagger-ui-express';
+import { storeRouter } from './src/routes/store.route.js';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({extended: false})); // 단순 객체 문자열 형�
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 app.use('/user', userRouter);
+app.use('/store', storeRouter);
 
 app.use((err, req, res, next) => {
     // 템플릿 엔진 변수 설정
