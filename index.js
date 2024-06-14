@@ -6,6 +6,8 @@ import { userRouter } from './src/routes/user.route.js';
 import { specs } from './swagger/swagger.config.js';
 import SwaggerUi from 'swagger-ui-express';
 import { storeRouter } from './src/routes/store.route.js';
+import { reviewRouter } from './src/routes/review.route.js';
+import { missionRouter } from './src/routes/mission.route.js';
 
 dotenv.config();
 
@@ -21,6 +23,8 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 app.use('/user', userRouter);
 app.use('/store', storeRouter);
+app.use('/review', reviewRouter);
+app.use('/mission', missionRouter);
 
 app.use((err, req, res, next) => {
     // 템플릿 엔진 변수 설정
