@@ -1,12 +1,12 @@
 CREATE TABLE region (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     name VARCHAR(20),
     created_at DATETIME(6),
     updated_at DATETIME(6)
 );
 
 CREATE TABLE store (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     region_id BIGINT,
     name VARCHAR(50),
     address VARCHAR(50),
@@ -17,7 +17,7 @@ CREATE TABLE store (
 );
 
 CREATE TABLE mission (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     store_id BIGINT,
     reward INT,
     deadline DATETIME,
@@ -28,12 +28,12 @@ CREATE TABLE mission (
 );
 
 CREATE TABLE member (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     name VARCHAR(20),
     gender VARCHAR(10),
     age INT,
-    address VARCHAR(128),
-    spec_address VARCHAR(128),
+    address VARCHAR(40),
+    spec_address VARCHAR(15),
     status VARCHAR(15),
     inactive_date DATETIME,
     social_type VARCHAR(10),
@@ -44,7 +44,7 @@ CREATE TABLE member (
 );
 
 CREATE TABLE member_mission (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     member_id BIGINT,
     mission_id BIGINT,
     status VARCHAR(15),
@@ -55,7 +55,7 @@ CREATE TABLE member_mission (
 );
 
 CREATE TABLE review (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     member_id BIGINT,
     store_id BIGINT,
     body TEXT,
@@ -65,7 +65,7 @@ CREATE TABLE review (
 );
 
 CREATE TABLE review_image (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     review_id BIGINT,
     image_url TEXT,
     created_at DATETIME(6),
@@ -74,7 +74,7 @@ CREATE TABLE review_image (
 );
 
 CREATE TABLE terms (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     title VARCHAR(20),
     body TEXT,
     optional BOOLEAN,
@@ -83,7 +83,7 @@ CREATE TABLE terms (
 );
 
 CREATE TABLE member_agree (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     member_id BIGINT,
     terms_id BIGINT,
     created_at DATETIME(6),
@@ -93,14 +93,14 @@ CREATE TABLE member_agree (
 );
 
 CREATE TABLE food_category (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     name VARCHAR(15),
     created_at DATETIME(6),
     updated_at DATETIME(6)
 );
 
 CREATE TABLE member_prefer (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     member_id BIGINT,
     category_id BIGINT,
     created_at DATETIME(6),
